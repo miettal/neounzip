@@ -1,0 +1,9 @@
+neounzip
+https://github.com/miettal/neounzip
+
+How to use
+$make
+$./unzip zipfile
+
+Copyright 2012, Hiromasa Ihara
+Licensed under the MIT license.
