@@ -1,15 +1,25 @@
 #include "bitstream.h"
 
-BitStreamFile::BitStreamFile(std::string filename)
-  :ifs(filename.c_str())
+BitStream::BitStream(std::string filename)
+  :std::ifstream(filename.c_str())
 {
   offset = 0;
 }
 
-int BitStreamFile::getbit()
+int BitStream::getbit()
 {
-}
+  int bit;
 
-void BitStreamFile::ungetbit()
-{
+  if(this->offset >= 8){
+    this->offset = 0;
+  }
+
+  if(this->offset == 0){
+    this->read(&this->byte, 1);
+  }
+
+  bit = (this->byte>>this->offset)&1;
+  this->offset++;
+
+  return bit;
 }

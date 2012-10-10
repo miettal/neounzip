@@ -4,23 +4,14 @@
 #include <string>
 #include <fstream>
 
-class BitStream
+class BitStream : public std::ifstream
 {
   private:
-  public:
-    virtual int getbit() = 0;
-    virtual void ungetbit() = 0;
-};
-
-class BitStreamFile : public BitStream
-{
-  private:
-    std::ifstream ifs;
     int offset;
+    char byte;
   public:
-    BitStreamFile(std::string filename);
+    BitStream(std::string filename);
     int getbit();
-    void ungetbit();
 };
 
 #endif   /* BITSTREAM_H_INCLUDED */
