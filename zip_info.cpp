@@ -37,8 +37,8 @@ ZipCentralHeader *readZipCentralHeader(FILE *fp)
   fread(&zipcentralheader->internal_file_attributes, sizeof(uint16_t), 1, fp);
   fread(&zipcentralheader->external_file_attributes, sizeof(uint32_t), 1, fp);
   fread(&zipcentralheader->position, sizeof(uint32_t), 1, fp);
-  zipcentralheader->file_name = (unsigned char*)malloc(sizeof(unsigned char) * (zipcentralheader->file_name_length+1));
-  fread(zipcentralheader->file_name, sizeof(unsigned char), zipcentralheader->file_name_length, fp);
+  zipcentralheader->file_name = (char*)malloc(sizeof(char) * (zipcentralheader->file_name_length+1));
+  fread(zipcentralheader->file_name, sizeof(char), zipcentralheader->file_name_length, fp);
   zipcentralheader->file_name[zipcentralheader->file_name_length] = '\0';
   zipcentralheader->extra_field_pos = ftell(fp);
   fseek(fp, zipcentralheader->extra_field_length, SEEK_CUR);
@@ -61,8 +61,8 @@ ZipHeader *readZipHeader(FILE *fp)
   fread(&zipheader->uncompressed_size, sizeof(uint32_t), 1, fp);
   fread(&zipheader->file_name_length, sizeof(uint16_t), 1, fp);
   fread(&zipheader->extra_field_length, sizeof(uint16_t), 1, fp);
-  zipheader->file_name = (unsigned char*)malloc(sizeof(unsigned char) * (zipheader->file_name_length+1));
-  fread(zipheader->file_name, sizeof(unsigned char), zipheader->file_name_length, fp);
+  zipheader->file_name = (char*)malloc(sizeof(char) * (zipheader->file_name_length+1));
+  fread(zipheader->file_name, sizeof(char), zipheader->file_name_length, fp);
   zipheader->file_name[zipheader->file_name_length] = '\0';
   zipheader->extra_field_pos = ftell(fp);
   fseek(fp, zipheader->extra_field_length, SEEK_CUR);

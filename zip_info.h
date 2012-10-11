@@ -23,7 +23,7 @@ typedef struct ZipHeader{
   uint32_t uncompressed_size;
   uint16_t file_name_length;
   uint16_t extra_field_length;
-  unsigned char *file_name;
+  char *file_name;
   long extra_field_pos;
   long data_pos;
 } ZipHeader;
@@ -46,7 +46,7 @@ typedef struct ZipCentralHeader{
   uint16_t internal_file_attributes;
   uint32_t external_file_attributes;
   uint32_t position;
-  unsigned char *file_name;
+  char *file_name;
   long extra_field_pos;
 } ZipCentralHeader;
 
